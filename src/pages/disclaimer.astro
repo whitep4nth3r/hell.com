@@ -1,0 +1,19 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base>
+  <div data-disclaimer>
+    <h1>disclaimer</h1>
+    <p>
+      this is a parallel web. there is no public access. the waiting list is approximately 18-22
+      months.
+    </p>
+    <a href="/apply/">apply</a>
+    <button type="button">don't</button>
+  </div>
+</Base>
+
+<script is:inline>
+  $("button").on("click", () => $("[data-disclaimer]").remove());
+</script>

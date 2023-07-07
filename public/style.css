@@ -1,0 +1,17 @@
+html {
+  background: black;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  color: red;
+  text-align: center;
+  font-size: 100%;
+}
+
+a {
+  color: red;
+}
+
+.hide {
+  display: none;
+}
