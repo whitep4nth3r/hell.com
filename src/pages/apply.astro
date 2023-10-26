@@ -2,9 +2,25 @@
 import Base from "../layouts/Base.astro";
 ---
 
-<Base>
-  <form method="POST" action="/" data-netlify="true">
+<Base title="apply">
+  <img src="/hell.jpeg" alt="hell" />
+  <form action="/">
     <input id="email" type="email" value="" placeholder="you@hell.com" />
     <button type="submit">yes</button>
   </form>
+
+  <script is:inline>
+    $("form").on("submit", function (event) {
+      event.preventDefault();
+      console.log("don't");
+      window.location.href = "/";
+    });
+  </script>
 </Base>
+
+<style>
+  img {
+    display: block;
+    margin-bottom: 1rem;
+  }
+</style>

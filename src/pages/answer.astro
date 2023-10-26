@@ -2,7 +2,22 @@
 import Base from "../layouts/Base.astro";
 ---
 
-<Base>
+<Base title="answer">
   <h1>answer</h1>
-  <!-- This link first led to a picture of a bald, naked woman falling through darkness. -->
+  <img src="angel.jpg" alt="angel" />
+
+  <script is:inline>
+    setTimeout(function () {
+      $("img").attr("src", "eye.jpg");
+      $("img").attr("alt", "eye");
+      $("h1").text("nothing stays the same");
+      $(document).prop("title", "nothing stays the same");
+    }, 7000);
+  </script>
 </Base>
+
+<style>
+  img {
+    height: 500px;
+  }
+</style>

@@ -2,13 +2,17 @@
 import Base from "../layouts/Base.astro";
 import GoAway from "../components/GoAway.astro";
 import That from "../components/That.astro";
+import What from "../components/What.astro";
 ---
 
-<Base>
+<Base title="PRIVATE">
   <GoAway />
   <That />
+  <What />
 
   <script is:inline>
+    const bits = ["go-away", "that", "what", "alert"];
+
     $(function () {
       function getRandomInt(min, max) {
         return Math.round(Math.random() * (max - min) + min);
@@ -18,8 +22,46 @@ import That from "../components/That.astro";
         return array[getRandomInt(0, array.length - 1)];
       }
 
-      const bits = [$("[data-go-away]"), $("[data-that]")];
-      getRandomEntry(bits).removeClass("hide");
+      const randomBitName = getRandomEntry(bits);
+
+      if (randomBitName === "alert") {
+        if (
+          confirm(
+            "ACCESS PROHIBITED   this is a private web.   you are being rerouted to the public information site",
+          )
+        ) {
+          window.location.href = "https://www.google.com";
+        } else {
+          window.location.href = "/";
+        }
+      } else {
+        $(`[data-${randomBitName}]`).removeClass("hide");
+
+        if (randomBitName === "what") {
+          const titles = ["BIG", "MISTAKE"];
+          let titleIndex = 0;
+
+          $(document).prop("title", titles[titleIndex]);
+
+          setInterval(function () {
+            $("h1").toggleClass("switch");
+            $("html").toggleClass("toggle");
+            const newTitleIndex = titleIndex === 1 ? 0 : 1;
+            titleIndex = newTitleIndex;
+            $(document).prop("title", titles[titleIndex]);
+          }, 1000);
+        }
+      }
     });
   </script>
 </Base>
+
+<style is:global>
+  .switch {
+    color: black;
+  }
+
+  .toggle {
+    background: red;
+  }
+</style>
